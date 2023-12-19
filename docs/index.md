@@ -8,7 +8,7 @@ layout: home
 </script>
 
 <div class="hero">
-  <VPImage class="image" :image="'images/home_hero.jpeg'"></VPImage>
+  <VPImage class="image" :image="'images/home_hero.jpg'"></VPImage>
 
   <h1 class="hero-title">September 2024</h1>
 </div>
@@ -20,18 +20,18 @@ layout: home
     <VPButton text="Click to View" href="https://docs.google.com/forms/d/e/1FAIpQLSfjVaCJHiNUDhZZocJlhuo69HipwODoZLmgsj4-apVz4iRdIg/viewform?usp=sf_link" />
   </div>
 
-  <VPImage :image="'images/IMG_2627.jpeg'"></VPImage>
+  <VPImage :image="'images/IMG_2627.jpg'"></VPImage>
 </article>
 
 <carousel :autoplay="true" :loop="true" :scrollPerPage="false" :perPage="1" :perPageCustom="[[768,2]]" :paginationPosition="'bottom-overlay'">
   <slide>
-    <VPImage :image="'images/DSC_0199.JPG'"></VPImage>
+    <VPImage :image="'images/DSC_0199.jpg'"></VPImage>
   </slide>
   <slide>
     <VPImage :image="'images/7A9C52CD-A283-4AF5-A4E4-E22EBDCAFF4A.jpg'"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/IMG_0063.jpeg'"></VPImage>
+    <VPImage :image="'images/IMG_0063.jpg'"></VPImage>
   </slide>
   <slide>
     <VPImage :image="'images/231113000203190014.jpg'"></VPImage>
@@ -40,10 +40,10 @@ layout: home
     <VPImage :image="'images/231113000203220022.jpg'"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/IMG_0426.jpeg'"></VPImage>
+    <VPImage :image="'images/IMG_0426.jpg'"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/IMG_2627.jpeg'"></VPImage>
+    <VPImage :image="'images/231113000203190008.jpg'"></VPImage>
   </slide>
 </carousel>
 
@@ -65,12 +65,11 @@ layout: home
 
     .action-description {
       text-align: center;
-      margin: 0 2em;
 
       p {
-        margin-bottom: 2em;
         font-size: 1.25em;
         line-height: 1.5em;
+        margin-bottom: 2em;
       }
     }
 
@@ -97,6 +96,10 @@ layout: home
 
       .action-description {
         width: 50%;
+
+        p {
+          margin-bottom: 2em;
+        }
       }
 
       .VPImage {
