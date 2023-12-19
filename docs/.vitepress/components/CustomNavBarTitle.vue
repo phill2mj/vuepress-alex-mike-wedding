@@ -24,19 +24,6 @@ const { currentLang } = useLangs()
 </template>
 
 <style scoped>
-@font-face{
-  font-family: "Pacific Northwest Letters W01";
-  src: url("fonts/e0870aa7286662dd08f498a39e6737de.eot");
-  src: url("fonts/e0870aa7286662dd08f498a39e6737de.eot?#iefix")format("embedded-opentype"),
-      url("fonts/e0870aa7286662dd08f498a39e6737de.woff")format("woff"),
-      url("fonts/e0870aa7286662dd08f498a39e6737de.woff2")format("woff2"),
-      url("fonts/e0870aa7286662dd08f498a39e6737de.ttf")format("truetype"),
-      url("fonts/e0870aa7286662dd08f498a39e6737de.svg#Pacific Northwest Letters W01")format("svg");
-  font-weight:normal;
-  font-style:normal;
-  font-display:swap;
-}
-
 .title {
   display: flex;
   align-items: center;
@@ -45,7 +32,6 @@ const { currentLang } = useLangs()
   height: var(--vp-nav-height);
   font-size: 36px;
   font-weight: 600;
-  font-family: "Pacific Northwest Letters W01";
   text-transform: uppercase;
   color: var(--vp-c-text-1);
   transition: opacity 0.25s;

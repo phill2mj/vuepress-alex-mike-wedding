@@ -8,7 +8,7 @@ layout: home
 </script>
 
 <div class="hero">
-  <VPImage class="image" :image="'images/home_hero.jpg'"></VPImage>
+  <VPImage class="image" image="/images/home_hero.jpg"></VPImage>
 
   <h1 class="hero-title">September 2024</h1>
 </div>
@@ -20,34 +20,47 @@ layout: home
     <VPButton text="Click to View" href="https://docs.google.com/forms/d/e/1FAIpQLSfjVaCJHiNUDhZZocJlhuo69HipwODoZLmgsj4-apVz4iRdIg/viewform?usp=sf_link" />
   </div>
 
-  <VPImage :image="'images/IMG_2627.jpg'"></VPImage>
+  <VPImage image="/images/IMG_2627.jpg"></VPImage>
 </article>
 
 <carousel :autoplay="true" :loop="true" :scrollPerPage="false" :perPage="1" :perPageCustom="[[768,2]]" :paginationPosition="'bottom-overlay'">
   <slide>
-    <VPImage :image="'images/DSC_0199.jpg'"></VPImage>
+    <VPImage image="/images/DSC_0199.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/7A9C52CD-A283-4AF5-A4E4-E22EBDCAFF4A.jpg'"></VPImage>
+    <VPImage image="/images/7A9C52CD-A283-4AF5-A4E4-E22EBDCAFF4A.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/IMG_0063.jpg'"></VPImage>
+    <VPImage image="/images/IMG_0063.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/231113000203190014.jpg'"></VPImage>
+    <VPImage image="/images/231113000203190014.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/231113000203220022.jpg'"></VPImage>
+    <VPImage image="/images/231113000203220022.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/IMG_0426.jpg'"></VPImage>
+    <VPImage image="/images/IMG_0426.jpg"></VPImage>
   </slide>
   <slide>
-    <VPImage :image="'images/231113000203190008.jpg'"></VPImage>
+    <VPImage image="/images/231113000203190008.jpg"></VPImage>
   </slide>
 </carousel>
 
 <style lang="scss">
+  @font-face{
+    font-family: "Pacific Northwest Letters W01";
+    src: url("/fonts/e0870aa7286662dd08f498a39e6737de.eot");
+    src: url("/fonts/e0870aa7286662dd08f498a39e6737de.eot?#iefix")format("embedded-opentype"),
+        url("/fonts/e0870aa7286662dd08f498a39e6737de.woff")format("woff"),
+        url("/fonts/e0870aa7286662dd08f498a39e6737de.woff2")format("woff2"),
+        url("/fonts/e0870aa7286662dd08f498a39e6737de.ttf")format("truetype"),
+        url("/fonts/e0870aa7286662dd08f498a39e6737de.svg#Pacific Northwest Letters W01")format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+  }
+
   .hero {
     position: relative;
 
@@ -99,6 +112,8 @@ layout: home
 
         p {
           margin-bottom: 2em;
+          margin-left: 3em;
+          margin-right: 3em;
         }
       }
 

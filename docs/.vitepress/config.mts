@@ -30,7 +30,7 @@ export default defineConfig({
   appearance: false,
   themeConfig: {
     siteTitle: '',
-    logo: 'images/logo.png',
+    logo: '/images/logo.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'RSVP', link: '/rsvp' },
