@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build:azure": "vitepress build docs",
     "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
