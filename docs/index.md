@@ -25,7 +25,7 @@ layout: home
 
 <carousel :autoplay="true" :loop="true" :scrollPerPage="false" :perPage="1" :perPageCustom="[[768,2]]" :paginationPosition="'bottom-overlay'">
   <slide>
-    <VPImage image="/images/DSC_0199.jpg"></VPImage>
+    <VPImage image="/images/proposal.jpg"></VPImage>
   </slide>
   <slide>
     <VPImage image="/images/7A9C52CD-A283-4AF5-A4E4-E22EBDCAFF4A.jpg"></VPImage>
