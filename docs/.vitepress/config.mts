@@ -56,6 +56,9 @@ export default defineConfig({
     plugins: [
       vuetify()
     ],
+    ssr: {
+      noExternal: ['@inertiajs/server',/\.css$/, /\?vue&type=style/, /^vuetify/],
+    },
     resolve: {
       alias: [
         {
