@@ -6,6 +6,24 @@ title: Home
 <script lang="ts" setup>
   import VPImage from 'vitepress/dist/client/theme-default/components/VPImage.vue';
   import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue';
+  import { onBeforeUnmount } from 'vue';
+  import { useModal, useVfm, } from 'vue-final-modal';
+  import RSVPModal from './.vitepress/components/RSVPModal.vue';
+
+  const rsvpModalShown = Boolean(localStorage.getItem('rsvpModalShown'));
+
+  if (!rsvpModalShown.valueOf()) {
+    useModal({
+      component: RSVPModal
+    }).open();
+
+    onBeforeUnmount(() => {
+      useVfm().closeAll()
+    })
+
+    localStorage.setItem('rsvpModalShown', 'true');
+  }
+
 </script>
 
 <div class="hero">
@@ -17,8 +35,8 @@ title: Home
 <article class="action">
   <div class="action-description">
     <p>Join us in September for a summer-camp style celebration in the mountains of North Carolina</p>
-    <p>Please fill out a brief questionnaire to help us plan for this fun filled weekend</p>
-    <VPButton text="Click to View" href="https://docs.google.com/forms/d/e/1FAIpQLSfjVaCJHiNUDhZZocJlhuo69HipwODoZLmgsj4-apVz4iRdIg/viewform?usp=sf_link" />
+    <p>If you have your invitation please RSVP</p>
+    <VPButton text="Click to RSVP" href="/rsvp" />
   </div>
 
   <VPImage image="/images/IMG_2627.jpg"></VPImage>

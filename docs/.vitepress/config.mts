@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
+import vuetify from 'vite-plugin-vuetify';
 
 export default defineConfig({
   title: 'Alex and Mike',
@@ -11,7 +12,11 @@ export default defineConfig({
     ],
     [
       'link',
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100'}
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100' }
+    ],
+    [
+    'link',
+     { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
     ]
     // [
     //   'script',
@@ -37,6 +42,7 @@ export default defineConfig({
       { text: 'Itinerary', link: '/itinerary' },
       { text: 'Lodging', link: '/lodging' },
       { text: 'Transportation', link: '/transportation'},
+      { text: 'Our Story', link: '/our-story'},
     ],
     search: {
       provider: 'local'
@@ -47,6 +53,9 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [
+      vuetify()
+    ],
     resolve: {
       alias: [
         {
