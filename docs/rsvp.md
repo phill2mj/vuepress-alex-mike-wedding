@@ -8,22 +8,26 @@ import { VPButton } from 'vitepress/theme';
 import { VPImage } from 'vitepress/theme';
 import { ref, reactive } from 'vue';
 const filling = ref(true);
-const response = ref(false);
+const isAttending = ref('accepts');
+const submitting = ref(false);
 
-  let form = reactive({
-    name: null,
-    response: null,
-    guests: 1,
-    stay: null,
-    dietary: null,
-  })
+  const name = ref(null);
+  const response = ref(null);
+  const guests = ref(1);
+  const stay = ref(null);
+  const dietary = ref(null);
 
   const storedResponse = localStorage.getItem('rsvpFormResponse');
 
   if (storedResponse) {
-    form = JSON.parse(storedResponse);
+    name.value = JSON.parse(storedResponse)['name'];
+    response.value = JSON.parse(storedResponse)['response'];
+    guests.value = JSON.parse(storedResponse)['guests'];
+    stay.value = JSON.parse(storedResponse)['stay'];
+    dietary.value = JSON.parse(storedResponse)['dietary'];
+
     filling.value = false;
-    response.value = form.response === 'accepts' ? true : false;
+    isAttending.value = JSON.parse(storedResponse)['response'];
   }
 
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzBFEfkxtGKdI9RpnOPmK30IdkGNdGCgEXl9zsUQfARihGuRUZT_w4f311XHM_zhpMxQg/exec'
@@ -31,21 +35,33 @@ const response = ref(false);
   const submitForm = (event: MouseEvent) => {
     event.preventDefault();
 
-    localStorage.setItem('rsvpFormResponse', JSON.stringify(form));
+    localStorage.setItem('rsvpFormResponse', JSON.stringify({
+      name: name.value,
+      response: response.value,
+      guests: guests.value,
+      stay: stay.value,
+      dietary: dietary.value
+    }));
 
     const formData = new FormData();
-    formData.append('name', form.name ? form.name : '');
-    formData.append('response', form.response ? form.response : '');
-    formData.append('guests', form.guests.toString());
-    formData.append('stay', form.stay ? form.stay : '');
-    formData.append('dietary', form.dietary ? form.dietary : '');
+    formData.append('name', name.value ? name.value : '');
+    formData.append('response', response.value ? response.value : '');
+    formData.append('guests', guests.value.toString());
+    formData.append('stay', stay.value ? stay.value : '');
+    formData.append('dietary', dietary.value ? dietary.value : '');
+
+    submitting.value = true
 
     fetch(scriptURL, { method: 'POST', body: formData})
-      .then(response => {
+      .then((success) => {
+        submitting.value = false;
         filling.value = false;
-        console.log('Success!', response);
+        isAttending.value = response.value;
       })
-      .catch(error => console.error('Error!', error.message))
+      .catch((error) => {
+        submitting.value = false;
+        alert(error.message)
+      });
   };
 
 </script>
@@ -53,28 +69,31 @@ const response = ref(false);
 <br />
 
 <form autocomplete="off" class="form" v-if="filling">
-  <v-text-field label="Respondent: " variant="solo" id="name" name="name" type="text" v-model="form.name" autocomplete="off"></v-text-field>
+  <v-text-field label="Respondent: " variant="solo" id="name" name="name" type="text" v-model="name" autocomplete="off"></v-text-field>
 
-  <v-radio-group v-model="form.response">
+  <v-radio-group v-model="response">
     <v-radio label="Joyfully accepts" value="accepts"></v-radio>
     <v-radio label="Regretfully declines" value="declines"></v-radio>
   </v-radio-group>
 
-  <v-text-field label="Number of guests (including yourself)" variant="solo" id="guests" name="guests" type="number" v-model="form.guests"></v-text-field>
+  <section v-if="response === 'accepts'">
+    <v-text-field label="Number of guests (including yourself)" variant="solo" id="guests" name="guests" type="number" v-model="guests"></v-text-field>
 
   <p>I will be:</p>
-  <v-radio-group v-model="form.stay">
+  <v-radio-group v-model="stay">
     <v-radio label="Staying on-site the whole weekend" value="weekend"></v-radio>
     <v-radio label="Just attending the ceremony" value="ceremony"></v-radio>
   </v-radio-group>
 
-  <v-text-field label="List any dietary restrictions" variant="solo" id="dietary" name="dietary" type="text" v-model="form.dietary"></v-text-field>
+  <v-text-field label="List any dietary restrictions" variant="solo" id="dietary" name="dietary" type="text" v-model="dietary"></v-text-field>
+  </section>
 
-  <VPButton type="button" :text="'Submit Response'" @click="submitForm"></VPButton>
+  <VPButton v-if="!submitting" type="button" :text="'Submit Response'" @click="submitForm"></VPButton>
+  <v-progress-circular v-else indeterminate></v-progress-circular>
 </form>
 <section v-else>
   <h3>Your response has been submitted</h3>
-  <p v-if="response">We look forward to seeing you in September!</p>
+  <p v-if="isAttending === 'accepts'">We look forward to seeing you in September!</p>
   <p v-else>We're sorry you can't make it. We will miss you dearly!</p>
   <VPButton type="button" :text="'Edit Response'" @click="() => filling = true"></VPButton>
   <div class="thank-you-image">
@@ -84,6 +103,10 @@ const response = ref(false);
 
 <style lang="scss" scoped>
   :deep(.v-selection-control__input:hover::before) {
+    opacity: 0.3;
+  }
+
+  :deep(.v-selection-control__input:focus::before) {
     opacity: 0.3;
   }
 
