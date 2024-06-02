@@ -41,6 +41,7 @@ export default defineConfig({
       { text: 'RSVP', link: '/rsvp' },
       { text: 'Itinerary', link: '/itinerary' },
       { text: 'Lodging', link: '/lodging' },
+      { text: 'Registry', link: '/registry' },
       { text: 'Transportation', link: '/transportation'},
       { text: 'Our Story', link: '/our-story'},
     ],

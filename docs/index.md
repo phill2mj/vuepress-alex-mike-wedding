@@ -9,8 +9,10 @@ title: Home
   import { onBeforeUnmount } from 'vue';
   import { useModal, useVfm, } from 'vue-final-modal';
   import RSVPModal from './.vitepress/components/RSVPModal.vue';
+  import RegisterModal from './.vitepress/components/RegisterModal.vue';
 
   const rsvpModalShown = Boolean(localStorage.getItem('rsvpModalShown'));
+  const registerModalShown = Boolean(localStorage.getItem('registerModalShown'));
 
   if (!rsvpModalShown.valueOf()) {
     useModal({
@@ -22,6 +24,18 @@ title: Home
     })
 
     localStorage.setItem('rsvpModalShown', 'true');
+  }
+
+  if (!registerModalShown.valueOf()) {
+    useModal({
+      component: RegisterModal
+    }).open();
+
+    onBeforeUnmount(() => {
+      useVfm().closeAll();
+    })
+
+    localStorage.setItem('registerModalShown', 'true')
   }
 
 </script>
