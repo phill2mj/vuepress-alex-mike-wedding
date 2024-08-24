@@ -3,17 +3,15 @@ layout: doc
 ---
 # Itinerary
 
-\*Tentative\* Please come back soon for more information
+<script lang="ts" setup>
+  import VPImage from 'vitepress/dist/client/theme-default/components/VPImage.vue';
+</script>
 
-### Friday
-- Arrive at The Mountain at your leisure and get settled in your accommodations
-- Dinner will be served in the dining hall
-- Afterward, join us for games, a bonfire, and socializing
+<VPImage class="image" image="/images/Page 1.png"></VPImage>
+<VPImage class="image" image="/images/Page 2.png"></VPImage>
 
-### Saturday
-- Breakfast and lunch will be served in the dining hall
-- The ceremony will take place in the early afternoon, reception and party to follow
-
-### Sunday
-- Breakfast will be served in the dining hall
-- Goodbyes!
+<style lang="scss">
+  .image {
+    width: 100%;
+  }
+</style>

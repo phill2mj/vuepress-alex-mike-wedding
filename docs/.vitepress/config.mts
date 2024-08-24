@@ -38,7 +38,7 @@ export default defineConfig({
     logo: '/images/logo.png',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'RSVP', link: '/rsvp' },
+      { text: 'FAQ', link: '/faq' },
       { text: 'Itinerary', link: '/itinerary' },
       { text: 'Lodging', link: '/lodging' },
       { text: 'Registry', link: '/registry' },

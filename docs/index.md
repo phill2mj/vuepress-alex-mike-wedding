@@ -14,29 +14,11 @@ title: Home
   const rsvpModalShown = Boolean(localStorage.getItem('rsvpModalShown'));
   const registerModalShown = Boolean(localStorage.getItem('registerModalShown'));
 
-  if (!rsvpModalShown.valueOf()) {
-    useModal({
-      component: RSVPModal
-    }).open();
+  const oneDay = 86400000; // hours*minutes*seconds*milliseconds
+  const firstDate = new Date();
+  const secondDate = new Date('2024/09/14');
 
-    onBeforeUnmount(() => {
-      useVfm().closeAll()
-    })
-
-    localStorage.setItem('rsvpModalShown', 'true');
-  }
-
-  if (!registerModalShown.valueOf()) {
-    useModal({
-      component: RegisterModal
-    }).open();
-
-    onBeforeUnmount(() => {
-      useVfm().closeAll();
-    })
-
-    localStorage.setItem('registerModalShown', 'true')
-  }
+  const daysUntilWedding = Math.round(Math.abs((firstDate - secondDate) / oneDay));
 
 </script>
 
@@ -48,9 +30,7 @@ title: Home
 
 <article class="action">
   <div class="action-description">
-    <p>Join us in September for a summer-camp style celebration in the mountains of North Carolina</p>
-    <p>If you have your invitation please RSVP</p>
-    <VPButton text="Click to RSVP" href="/rsvp" />
+    <p>Our wedding is just <span class="excited">{{daysUntilWedding}}</span> days away!! We can't wait to celebrate!</p>
   </div>
 
   <VPImage image="/images/IMG_2627.jpg"></VPImage>
@@ -116,6 +96,11 @@ title: Home
         font-size: 1.25em;
         line-height: 1.5em;
         margin-bottom: 2em;
+
+        .excited {
+          color: gold;
+          font-size: 1.5em;
+        }
       }
     }
 
